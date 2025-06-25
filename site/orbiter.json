@@ -1,0 +1,6 @@
+{
+  "siteId": "6fff21e6-ced1-45aa-afc6-983b13f8c888",
+  "domain": "darkmatter",
+  "buildCommand": "bun run build",
+  "buildDir": "dist"
+}

@@ -17,13 +17,13 @@ export function Copy() {
 
 	return (
 		<div className="max-w-lg w-full">
-			<div className="relative rounded-lg bg-zinc-800 p-4 overflow-hidden">
+			<div className="relative rounded-lg bg-zinc-800 p-4 overflow-scroll mx-4 sm:mx-auto">
 				<pre className="text-sm font-mono">
 					<code>curl -sSL https://darkmatter.build/install.sh | bash</code>
 				</pre>
 				<button
 					type="button"
-					className="absolute top-2.5 right-2 rounded-md p-2 hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none"
+					className="absolute hidden sm:block top-2.5 right-2 rounded-md p-2 hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none"
 					onClick={copyToClipboard}
 				>
 					{copied ? (

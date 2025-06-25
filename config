@@ -4,8 +4,6 @@ font-family-italic = CommitMono Nerd Font
 font-family-bold-italic = CommitMono Nerd Font
 font-size = 14
 
-theme = flexoki-dark
-
 confirm-close-surface = false
 clipboard-read = allow
 clipboard-write = allow
@@ -15,6 +13,29 @@ window-padding-balance = true
 window-save-state = always
 window-width = 85
 window-height = 30
+
+background = #121113
+foreground = #ffffff
+
+selection-background = #222222
+selection-foreground = #000000
+
+palette = 0=#121113
+palette = 1=#5f8787
+palette = 2=#fbcb97
+palette = 3=#e78a53
+palette = 4=#888888
+palette = 5=#999999
+palette = 6=#aaaaaa
+palette = 7=#c1c1c1
+palette = 8=#333333
+palette = 9=#5f8787
+palette = 10=#fbcb97
+palette = 11=#e78a53
+palette = 12=#888888
+palette = 13=#999999
+palette = 14=#aaaaaa
+palette = 15=#c1c1c1
 
 auto-update-channel = stable
 click-repeat-interval = 500

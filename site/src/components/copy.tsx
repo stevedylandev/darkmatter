@@ -5,7 +5,9 @@ export function Copy() {
 
 	const copyToClipboard = async () => {
 		try {
-			await navigator.clipboard.writeText("bun create bhvr@latest");
+			await navigator.clipboard.writeText(
+				"curl -sSL https://darkmatter.build/install.sh | bash",
+			);
 			setCopied(true);
 			setTimeout(() => setCopied(false), 2000);
 		} catch (err) {

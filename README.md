@@ -29,8 +29,10 @@ curl -sSL https://darkmatter.build/install.sh | bash
 
 [Install script source code](/install.sh)
 
+### Manual Setup
+
 <details>
-  <summary>###Manual Setup</summary>
+  <summary>Instructions</summary>
 
 You can also create the DARKMATTER setup manually by following these steps.
 
@@ -134,7 +136,7 @@ click-repeat-interval = 500
 
 **4. Install CommitMono**
 
-DARKMATTER uses a open sourced font called [CommitMono](https://commitmono.com) and in this repo you can download special Nerd Font patched versions of it, which include nice icons used by several of the programs already installed. Check them out in the `assets` folder in this repo.
+DARKMATTER uses a open sourced font called [CommitMono](https://commitmono.com) and in this repo you can download special Nerd Font patched versions of it, which include nice icons used by several of the programs already installed. Check them out in the [`assets`](/assets) folder in this repo.
 
 **5. Open Ghostty!**
 
@@ -142,4 +144,90 @@ After following these steps you should be able to open Ghostty and you will have
 
 </details>
 
-## Usage
+## Features
+
+Thanks to the programs installed you will have several nice quality of life features available in your terminal!
+
+### AI Shell
+
+Through [AIChat](https://github.com/sigoden/aichat) you can have a great AI experience in your terminal. Start by running the command `ai` which will create a config and ask for your preferred and API key if applicable. If you want to use a local model with a tool like `ollama` use the `openai-compatible` option and use `http://localhost:11434/v1` as the base URL with no API key.
+
+![aichat video](https://files.stevedylan.dev/ai-chat.mp4)
+
+Once installed you can use AI in multiple ways in your terminal.
+
+Start an AI chat session, or do a single prompt
+
+```bash
+ai
+
+ai why is the sky blue?
+```
+
+Have AI generate a shell command
+
+```bash
+ai -e find my current IP address
+```
+
+Generate just code
+
+```bash
+ai -c React useEffect hook usage
+```
+
+AIChat has a lot more capabilities we can't cover here, so by all means [check out the docs](https://github.com/sigoden/aichat/wiki/Chat-REPL-Guide) for more info!
+
+### Better `zsh`
+
+By installing `zsh-autosuggestions` and `zsh-syntax-highlighting` we're able to get a much better auto complete setup with zero zsh frameworks or package managers!
+
+// gif
+
+### Better `cd` with `zoxide`
+
+As you use `cd` to move into different directories, zoxide will gain memory of where you've been and make it easier to navigate to it later. For example, if you used `cd ~/Desktop`, anytime after that you can just use `cd Desktop` to navigate directly to that folder, without needing the full path. You can also use partial words like `cd Desk`.
+
+// gif
+
+### Better `ls` with `eza`
+
+`eza` provides a more visually appealing `ls` command that uses NerdFont icons from the patched [CommitMono](https://commitmono.com) font installed with your setup.
+
+// gif
+
+### Better `htop` with `btop`
+
+Nothing is more satisfying than viewing your system processes, and there's not a better way to do that than with [`btop`](https://github.com/aristocratos/btop). For best color results, update the theme to `TTY` by hitting `ESC` then going to `Settings`.
+
+// gif
+
+## Themes
+
+DARKMATTER comes with it's own custom theme that I modeled after my favorite theme of all time, Black Metal Bathory. Thankfully Ghostty comes with hundreds of themes you can choose from; just run the following command to see them all!
+
+```bash
+ghostty +list-themes
+```
+
+This will let you preview any theme available in Ghostty, and when you've found the one you want, simply update the `~/.config/ghostty/config` file with the `theme` property. So if you wanted `catppuccin-mocha` you would use the following
+
+```
+theme = catppuccin-mocha
+```
+
+Also make sure to delete the custom color config that came with DARKMATTER.
+
+> [!INFO]
+> For more info on how to use Ghostty themes or Ghostty in general [check out the docs](https://ghostty.org/docs)
+
+## Prompt
+
+For those who may not know, the prompt is what the terminal greets you with. DARKMATTER uses [Starship](https://starship.rs) as it includes a wonderful default setup but also allows for deep customization. An easy way to change it is to check out the [presets list](https://starship.rs/presets/#presets) in the Starship docs.
+
+// gif
+
+> [!INFO]
+> For more info on customizing your prompt [check out the docs](https://starship.rs)
+
+## Questions

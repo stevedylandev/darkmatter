@@ -197,7 +197,6 @@ download_configs() {
     local files=(
         ".zshrc"
         "config"
-        "starship.toml"
     )
 
     local success_count=0
@@ -336,7 +335,6 @@ install_packages() {
 
     # Update Homebrew first
     print_status "Updating Homebrew..."
-    brew update || print_warning "Homebrew update failed, continuing anyway..."
 
     # Install regular packages
     for package in "${packages[@]}"; do
@@ -406,14 +404,6 @@ backup_configs() {
         } || print_warning "Failed to backup ghostty config"
     fi
 
-    if [ -f "$HOME/.config/starship.toml" ]; then
-        mkdir -p "$backup_dir/.config"
-        cp "$HOME/.config/starship.toml" "$backup_dir/.config/" && {
-            print_success "Backed up starship.toml to $backup_dir"
-            backed_up=true
-        } || print_warning "Failed to backup starship.toml"
-    fi
-
     if [ "$backed_up" = false ]; then
         print_status "No existing configuration files to backup"
         rmdir "$backup_dir" 2>/dev/null || true
@@ -452,21 +442,6 @@ install_configs() {
         fi
     else
         print_error "Ghostty config not found in downloaded files: $TEMP_DIR/config"
-        ((install_errors++))
-    fi
-
-    # Install starship config
-    if [ -f "$TEMP_DIR/starship.toml" ]; then
-        print_debug "Installing starship config to $HOME/.config/"
-        mkdir -p "$HOME/.config"
-        if cp "$TEMP_DIR/starship.toml" "$HOME/.config/"; then
-            print_success "Installed starship.toml"
-        else
-            print_error "Failed to install starship.toml"
-            ((install_errors++))
-        fi
-    else
-        print_error "starship.toml not found in downloaded files: $TEMP_DIR/starship.toml"
         ((install_errors++))
     fi
 

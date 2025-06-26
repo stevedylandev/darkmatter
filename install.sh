@@ -82,10 +82,6 @@ check_dependencies() {
         print_error "curl is not installed. Please install it first."
         exit 1
     fi
-    print_success "curl found at: $(which curl)"
-
-    print_debug "Checking curl version..."
-    curl --version | head -1
 }
 
 # Create temporary directory for downloads
@@ -206,7 +202,6 @@ download_configs() {
 
     for file in "${files[@]}"; do
         print_debug "=== Processing file $((success_count + 1))/$total_files: $file ==="
-        print_status "Attempting to download: $file"
 
         # Disable error exit temporarily for this specific operation
         set +e
@@ -259,7 +254,7 @@ download_and_install_font() {
     mkdir -p "$TEMP_DIR/assets"
     font_dest="$TEMP_DIR/assets/$font_filename"
 
-    if curl -L -f -s -w "HTTP_CODE:%{http_code};SIZE:%{size_download}" -o "$font_dest" "$font_url" 2>/dev/null; then
+    if curl -L -f -s  -o "$font_dest" "$font_url" 2>/dev/null; then
         local file_size=$(wc -c < "$font_dest" 2>/dev/null || echo "0")
         print_success "Downloaded CommitMono Nerd Font (${file_size} bytes)"
 
@@ -334,9 +329,6 @@ install_packages() {
     local cask_packages=(
         "ghostty"
     )
-
-    # Update Homebrew first
-    print_status "Updating Homebrew..."
 
     # Install regular packages
     for package in "${packages[@]}"; do
@@ -595,10 +587,10 @@ main() {
 
     check_dependencies
     setup_temp_dir
+    install_packages
     test_github_connection
     download_configs
     download_and_install_font
-    install_packages
     backup_configs
     install_configs
     set_default_shell

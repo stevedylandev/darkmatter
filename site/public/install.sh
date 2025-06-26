@@ -82,10 +82,6 @@ check_dependencies() {
         print_error "curl is not installed. Please install it first."
         exit 1
     fi
-    print_success "curl found at: $(which curl)"
-
-    print_debug "Checking curl version..."
-    curl --version | head -1
 }
 
 # Create temporary directory for downloads
@@ -197,6 +193,7 @@ download_configs() {
     local files=(
         ".zshrc"
         "config"
+        "dark.tmTheme"
     )
 
     local success_count=0
@@ -206,7 +203,6 @@ download_configs() {
 
     for file in "${files[@]}"; do
         print_debug "=== Processing file $((success_count + 1))/$total_files: $file ==="
-        print_status "Attempting to download: $file"
 
         # Disable error exit temporarily for this specific operation
         set +e
@@ -259,7 +255,7 @@ download_and_install_font() {
     mkdir -p "$TEMP_DIR/assets"
     font_dest="$TEMP_DIR/assets/$font_filename"
 
-    if curl -L -f -s -w "HTTP_CODE:%{http_code};SIZE:%{size_download}" -o "$font_dest" "$font_url" 2>/dev/null; then
+    if curl -L -f -s  -o "$font_dest" "$font_url" 2>/dev/null; then
         local file_size=$(wc -c < "$font_dest" 2>/dev/null || echo "0")
         print_success "Downloaded CommitMono Nerd Font (${file_size} bytes)"
 
@@ -327,14 +323,13 @@ install_packages() {
         "starship"
         "eza"
         "zoxide"
+        "aichat"
+        "btop"
     )
 
     local cask_packages=(
         "ghostty"
     )
-
-    # Update Homebrew first
-    print_status "Updating Homebrew..."
 
     # Install regular packages
     for package in "${packages[@]}"; do
@@ -410,30 +405,81 @@ backup_configs() {
     fi
 }
 
+check_darkmatter_in_zshrc() {
+    local zshrc_file="$1"
+
+    if [ ! -f "$zshrc_file" ]; then
+        return 1  # File doesn't exist
+    fi
+
+    # Look for our marker comment
+    if grep -q "# Darkmatter Terminal Configuration" "$zshrc_file" 2>/dev/null; then
+        return 0  # Already present
+    else
+        return 1  # Not present
+    fi
+}
+
+
 # Copy downloaded configuration files to their destinations
 install_configs() {
     print_status "Installing configuration files..."
 
     local install_errors=0
 
-    # Install .zshrc
+    # Handle .zshrc installation
     if [ -f "$TEMP_DIR/.zshrc" ]; then
-        print_debug "Installing .zshrc to $HOME/"
-        if cp "$TEMP_DIR/.zshrc" "$HOME/"; then
-            print_success "Installed .zshrc"
+        if [ -f "$HOME/.zshrc" ]; then
+            # Existing .zshrc found
+            print_status "Existing .zshrc found, checking for Darkmatter configuration..."
+
+            if check_darkmatter_in_zshrc "$HOME/.zshrc"; then
+                print_warning "Darkmatter configuration already exists in .zshrc"
+                print_status "Skipping .zshrc modification to avoid duplicates"
+            else
+                print_status "Appending Darkmatter configuration to existing .zshrc"
+
+                # Add a separator and our config
+                {
+                    echo ""
+                    echo "# ============================================="
+                    echo "# Darkmatter Terminal Configuration"
+                    echo "# Added by Darkmatter installer on $(date)"
+                    echo "# ============================================="
+                    echo ""
+                    cat "$TEMP_DIR/.zshrc"
+                } >> "$HOME/.zshrc" && {
+                    print_success "Successfully appended Darkmatter configuration to .zshrc"
+                } || {
+                    print_error "Failed to append to existing .zshrc"
+                    ((install_errors++))
+                }
+            fi
         else
-            print_error "Failed to install .zshrc"
-            ((install_errors++))
+            # No existing .zshrc, create new one
+            print_status "No existing .zshrc found, creating new one"
+            if cp "$TEMP_DIR/.zshrc" "$HOME/"; then
+                print_success "Installed .zshrc"
+            else
+                print_error "Failed to install .zshrc"
+                ((install_errors++))
+            fi
         fi
     else
         print_error ".zshrc not found in downloaded files: $TEMP_DIR/.zshrc"
         ((install_errors++))
     fi
 
-    # Install ghostty config
+    # Install ghostty config (keep existing logic for replacement)
     if [ -f "$TEMP_DIR/config" ]; then
         print_debug "Installing ghostty config to $HOME/.config/ghostty/"
         mkdir -p "$HOME/.config/ghostty"
+
+        if [ -f "$HOME/.config/ghostty/config" ]; then
+            print_status "Existing Ghostty config found, it will be replaced"
+            print_status "(Previous config was backed up)"
+        fi
+
         if cp "$TEMP_DIR/config" "$HOME/.config/ghostty/"; then
             print_success "Installed Ghostty config"
         else
@@ -442,6 +488,26 @@ install_configs() {
         fi
     else
         print_error "Ghostty config not found in downloaded files: $TEMP_DIR/config"
+        ((install_errors++))
+    fi
+
+    # Install aichat theme
+    if [ -f "$TEMP_DIR/dark.tmTheme" ]; then
+        print_debug "Installing aichat theme to $HOME/Library/Application Support/aichat/"
+        mkdir -p "$HOME/Library/Application Support/aichat"
+
+        if [ -f "$HOME/Library/Application Support/aichat/dark.tmTheme" ]; then
+            print_status "Existing aichat theme found, it will be replaced"
+        fi
+
+        if cp "$TEMP_DIR/dark.tmTheme" "$HOME/Library/Application Support/aichat/"; then
+            print_success "Installed aichat theme"
+        else
+            print_error "Failed to install aichat theme"
+            ((install_errors++))
+        fi
+    else
+        print_error "aichat theme not found in downloaded files: $TEMP_DIR/dark.tmTheme"
         ((install_errors++))
     fi
 
@@ -542,10 +608,10 @@ main() {
 
     check_dependencies
     setup_temp_dir
+    install_packages
     test_github_connection
     download_configs
     download_and_install_font
-    install_packages
     backup_configs
     install_configs
     set_default_shell

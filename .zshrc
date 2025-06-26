@@ -15,13 +15,18 @@ bindkey '^[[B' history-search-forward
 bindkey '^k' history-search-backward
 bindkey '^j' history-search-forward
 
+# Source zsh plugins
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-alias ls="eza --icons=always"
-
-eval "$(zoxide init zsh)"
-
+# Alias / keyboard shortcuts
 alias cd="z"
+alias ls="eza --icons=always"
+alias ai="aichat"
 
+# Exports
+export BAT_THEME="ansi"
+
+# Setup zoxide and starship
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

@@ -327,6 +327,8 @@ install_packages() {
         "starship"
         "eza"
         "zoxide"
+        "aichat"
+        "btop"
     )
 
     local cask_packages=(

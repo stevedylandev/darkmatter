@@ -193,6 +193,7 @@ download_configs() {
     local files=(
         ".zshrc"
         "config"
+        "dark.tmTheme"
     )
 
     local success_count=0
@@ -487,6 +488,26 @@ install_configs() {
         fi
     else
         print_error "Ghostty config not found in downloaded files: $TEMP_DIR/config"
+        ((install_errors++))
+    fi
+
+    # Install aichat theme
+    if [ -f "$TEMP_DIR/dark.tmTheme" ]; then
+        print_debug "Installing aichat theme to $HOME/Library/Application Support/aichat/"
+        mkdir -p "$HOME/Library/Application Support/aichat"
+
+        if [ -f "$HOME/Library/Application Support/aichat/dark.tmTheme" ]; then
+            print_status "Existing aichat theme found, it will be replaced"
+        fi
+
+        if cp "$TEMP_DIR/dark.tmTheme" "$HOME/Library/Application Support/aichat/"; then
+            print_success "Installed aichat theme"
+        else
+            print_error "Failed to install aichat theme"
+            ((install_errors++))
+        fi
+    else
+        print_error "aichat theme not found in downloaded files: $TEMP_DIR/dark.tmTheme"
         ((install_errors++))
     fi
 

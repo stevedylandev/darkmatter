@@ -1,4 +1,5 @@
 import { Copy } from "./components/copy";
+import termImage from "./assets/darkmatter.png";
 
 function App() {
 	return (
@@ -7,6 +8,7 @@ function App() {
 			<p className="text-xs sm:text-lg font-mono">
 				An opinionated terminal setup with Ghostty
 			</p>
+			<img src={termImage} className="sm:max-w-2xl max-w-sm" alt="screenshot" />
 			<Copy />
 			<a
 				href="https://github.com/stevedylandev/darkmatter"

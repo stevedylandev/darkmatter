@@ -412,30 +412,81 @@ backup_configs() {
     fi
 }
 
+check_darkmatter_in_zshrc() {
+    local zshrc_file="$1"
+
+    if [ ! -f "$zshrc_file" ]; then
+        return 1  # File doesn't exist
+    fi
+
+    # Look for our marker comment
+    if grep -q "# Darkmatter Terminal Configuration" "$zshrc_file" 2>/dev/null; then
+        return 0  # Already present
+    else
+        return 1  # Not present
+    fi
+}
+
+
 # Copy downloaded configuration files to their destinations
 install_configs() {
     print_status "Installing configuration files..."
 
     local install_errors=0
 
-    # Install .zshrc
+    # Handle .zshrc installation
     if [ -f "$TEMP_DIR/.zshrc" ]; then
-        print_debug "Installing .zshrc to $HOME/"
-        if cp "$TEMP_DIR/.zshrc" "$HOME/"; then
-            print_success "Installed .zshrc"
+        if [ -f "$HOME/.zshrc" ]; then
+            # Existing .zshrc found
+            print_status "Existing .zshrc found, checking for Darkmatter configuration..."
+
+            if check_darkmatter_in_zshrc "$HOME/.zshrc"; then
+                print_warning "Darkmatter configuration already exists in .zshrc"
+                print_status "Skipping .zshrc modification to avoid duplicates"
+            else
+                print_status "Appending Darkmatter configuration to existing .zshrc"
+
+                # Add a separator and our config
+                {
+                    echo ""
+                    echo "# ============================================="
+                    echo "# Darkmatter Terminal Configuration"
+                    echo "# Added by Darkmatter installer on $(date)"
+                    echo "# ============================================="
+                    echo ""
+                    cat "$TEMP_DIR/.zshrc"
+                } >> "$HOME/.zshrc" && {
+                    print_success "Successfully appended Darkmatter configuration to .zshrc"
+                } || {
+                    print_error "Failed to append to existing .zshrc"
+                    ((install_errors++))
+                }
+            fi
         else
-            print_error "Failed to install .zshrc"
-            ((install_errors++))
+            # No existing .zshrc, create new one
+            print_status "No existing .zshrc found, creating new one"
+            if cp "$TEMP_DIR/.zshrc" "$HOME/"; then
+                print_success "Installed .zshrc"
+            else
+                print_error "Failed to install .zshrc"
+                ((install_errors++))
+            fi
         fi
     else
         print_error ".zshrc not found in downloaded files: $TEMP_DIR/.zshrc"
         ((install_errors++))
     fi
 
-    # Install ghostty config
+    # Install ghostty config (keep existing logic for replacement)
     if [ -f "$TEMP_DIR/config" ]; then
         print_debug "Installing ghostty config to $HOME/.config/ghostty/"
         mkdir -p "$HOME/.config/ghostty"
+
+        if [ -f "$HOME/.config/ghostty/config" ]; then
+            print_status "Existing Ghostty config found, it will be replaced"
+            print_status "(Previous config was backed up)"
+        fi
+
         if cp "$TEMP_DIR/config" "$HOME/.config/ghostty/"; then
             print_success "Installed Ghostty config"
         else

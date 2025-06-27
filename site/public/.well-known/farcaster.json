@@ -1,0 +1,19 @@
+{
+	"accountAssociation": {
+		"header": "eyJmaWQiOjYwMjMsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg0NTYxMzExNjFmODNDN0Q3ZkRBMTViMzJhNWY3QzIxRkQ0RTI3RTk2In0",
+		"payload": "eyJkb21haW4iOiJkYXJrbWF0dGVyLmJ1aWxkIn0",
+		"signature": "MHg2ZmIzOThkNzBkNzNlNDM5MTc0ZTg2MzNiNWZiZmI5ZGRjOTA3MTA1ODJhMzQ2NTZmYTdjNWU5YjU2YmI2N2FlMWQyOWY5MmFlNDYxNDJjYzMyZGU0ZTg2ZTM4OTg3ZmMwNzZiM2UwOTA2MDBmMGE5NjJiNDhmMGQwYzY4OGYzZjFj"
+	},
+	"frame": {
+		"name": "DARKMATTER",
+		"version": "1",
+		"iconUrl": "https://darkmatter.build/icon.png",
+		"homeUrl": "https://darkmatter.build",
+		"imageUrl": "https://darkmatter.build/image.png",
+		"buttonTitle": "Explore",
+		"splashImageUrl": "https://darkmatter.build/icon.png",
+		"splashBackgroundColor": "#121113",
+		"primaryCategory": "developer-tools",
+		"tags": ["developers", "programming"]
+	}
+}

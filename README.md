@@ -200,7 +200,7 @@ As you use `cd` to move into different directories, zoxide will gain memory of w
 
 Nothing is more satisfying than viewing your system processes, and there's not a better way to do that than with [`btop`](https://github.com/aristocratos/btop). For best color results, update the theme to `TTY` by hitting `ESC` then going to `Settings`.
 
-![btop](https://files.stevedylan.dev/btop-3.gif)
+![btop](https://files.stevedylan.dev/btop.png)
 
 ## Themes
 

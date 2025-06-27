@@ -150,7 +150,7 @@ Thanks to the programs installed you will have several nice quality of life feat
 
 ### AI Shell
 
-Through [AIChat](https://github.com/sigoden/aichat) you can have a great AI experience in your terminal. Start by running the command `ai` which will create a config and ask for your preferred and API key if applicable. If you want to use a local model with a tool like `ollama` use the `openai-compatible` option and use `http://localhost:11434/v1` as the base URL with no API key.
+Through [AIChat](https://github.com/sigoden/aichat) you can have a great AI experience in your terminal. Start by running the command `ai` which will create a config and ask for your preferred provider and API key if applicable. If you want to use a local model with a tool like `ollama` use the `openai-compatible` option and use `http://localhost:11434/v1` as the base URL with no API key.
 
 ![aichat video](https://files.stevedylan.dev/ai-chat.gif)
 
@@ -174,6 +174,12 @@ Generate just code
 
 ```bash
 ai -c React useEffect hook usage
+```
+
+Feed it a file as context
+
+```bash
+ai -f src/index.ts explain this code
 ```
 
 AIChat has a lot more capabilities we can't cover here, so by all means [check out the docs](https://github.com/sigoden/aichat/wiki/Chat-REPL-Guide) for more info!

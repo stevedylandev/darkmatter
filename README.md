@@ -152,7 +152,7 @@ Thanks to the programs installed you will have several nice quality of life feat
 
 Through [AIChat](https://github.com/sigoden/aichat) you can have a great AI experience in your terminal. Start by running the command `ai` which will create a config and ask for your preferred and API key if applicable. If you want to use a local model with a tool like `ollama` use the `openai-compatible` option and use `http://localhost:11434/v1` as the base URL with no API key.
 
-![aichat video](https://files.stevedylan.dev/ai-chat.mp4)
+![aichat video](https://files.stevedylan.dev/ai-chat.gif)
 
 Once installed you can use AI in multiple ways in your terminal.
 
@@ -182,25 +182,25 @@ AIChat has a lot more capabilities we can't cover here, so by all means [check o
 
 By installing `zsh-autosuggestions` and `zsh-syntax-highlighting` we're able to get a much better auto complete setup with zero zsh frameworks or package managers!
 
-// gif
+![zsh gif](https://files.stevedylan.dev/zsh-completions.gif)
 
 ### Better `cd` with `zoxide`
 
 As you use `cd` to move into different directories, zoxide will gain memory of where you've been and make it easier to navigate to it later. For example, if you used `cd ~/Desktop`, anytime after that you can just use `cd Desktop` to navigate directly to that folder, without needing the full path. You can also use partial words like `cd Desk`.
 
-// gif
+![zoxide gif](https://files.stevedylan.dev/zoxide.gif)
 
 ### Better `ls` with `eza`
 
 `eza` provides a more visually appealing `ls` command that uses NerdFont icons from the patched [CommitMono](https://commitmono.com) font installed with your setup.
 
-// gif
+![eza gif](https://files.stevedylan.dev/eza.gif)
 
 ### Better `htop` with `btop`
 
 Nothing is more satisfying than viewing your system processes, and there's not a better way to do that than with [`btop`](https://github.com/aristocratos/btop). For best color results, update the theme to `TTY` by hitting `ESC` then going to `Settings`.
 
-// gif
+![btop gif](https://files.stevedylan.dev/btop.gif)
 
 ## Themes
 
@@ -225,9 +225,11 @@ Also make sure to delete the custom color config that came with DARKMATTER.
 
 For those who may not know, the prompt is what the terminal greets you with. DARKMATTER uses [Starship](https://starship.rs) as it includes a wonderful default setup but also allows for deep customization. An easy way to change it is to check out the [presets list](https://starship.rs/presets/#presets) in the Starship docs.
 
-// gif
+![starship gif](https://files.stevedylan.dev/starship.gif)
 
 > [!INFO]
 > For more info on customizing your prompt [check out the docs](https://starship.rs)
 
 ## Questions
+
+Feel free to open an issue or [send me a message](https://stevedylan.dev/links)!

@@ -12,7 +12,7 @@ window-padding-x = 6
 window-padding-balance = true
 window-save-state = always
 window-width = 85
-window-height = 30
+window-height = 25
 
 background = #121113
 foreground = #ffffff

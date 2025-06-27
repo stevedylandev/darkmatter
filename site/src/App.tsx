@@ -1,10 +1,11 @@
 import { Copy } from "./components/copy";
-import { Link } from "@mini_apps/utilities";
+import { Link, FrameInit } from "@mini_apps/utilities";
 import termImage from "./assets/darkmatter.png";
 
 function App() {
 	return (
 		<main className="flex flex-col min-h-screen w-full items-center justify-center gap-12 bg-[#121113] text-white">
+			<FrameInit />
 			<h1 className="sm:text-7xl text-5xl font-mono">DARKMATTER</h1>
 			<p className="text-xs sm:text-lg font-mono">
 				An opinionated terminal setup with Ghostty

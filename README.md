@@ -15,7 +15,7 @@ At the moment this setup and installation flow is designed for MacOS and [Homebr
 ## Installation
 
 > [!NOTE]
-> [Homebrew](https://brew.sh) is required to setup DARKMATTER
+> [Homebrew](https://brew.sh) is required to use the script and instructions, feel free to use your own package manager in the manual steps!
 
 There are two ways you can get DARKMATTER running on your computer
 
@@ -200,7 +200,7 @@ As you use `cd` to move into different directories, zoxide will gain memory of w
 
 Nothing is more satisfying than viewing your system processes, and there's not a better way to do that than with [`btop`](https://github.com/aristocratos/btop). For best color results, update the theme to `TTY` by hitting `ESC` then going to `Settings`.
 
-![btop gif](https://files.stevedylan.dev/btop.gif)
+![btop](https://files.stevedylan.dev/btop.gif)
 
 ## Themes
 
@@ -218,7 +218,7 @@ theme = catppuccin-mocha
 
 Also make sure to delete the custom color config that came with DARKMATTER.
 
-> [!INFO]
+> [!NOTE]
 > For more info on how to use Ghostty themes or Ghostty in general [check out the docs](https://ghostty.org/docs)
 
 ## Prompt
@@ -227,7 +227,7 @@ For those who may not know, the prompt is what the terminal greets you with. DAR
 
 ![starship gif](https://files.stevedylan.dev/starship.gif)
 
-> [!INFO]
+> [!NOTE]
 > For more info on customizing your prompt [check out the docs](https://starship.rs)
 
 ## Questions

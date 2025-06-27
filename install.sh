@@ -325,6 +325,7 @@ install_packages() {
         "zoxide"
         "aichat"
         "btop"
+        "fzf"
     )
 
     local cask_packages=(

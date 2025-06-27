@@ -41,7 +41,7 @@ You can also create the DARKMATTER setup manually by following these steps.
 Run the following commands to install packages for DARKMATTER
 
 ```bash
-brew install zsh zsh-autosuggestions zsh-syntax-highlighting starship eza zoxide aichat btop
+brew install zsh zsh-autosuggestions zsh-syntax-highlighting starship eza zoxide aichat btop fzf
 
 brew install --cask ghostty
 ```

@@ -326,6 +326,7 @@ install_packages() {
         "aichat"
         "btop"
         "fzf"
+        "bat"
     )
 
     local cask_packages=(

@@ -10,24 +10,34 @@ To me, the terminal has always been a sacred place. Any developer who has accomp
 
 DARKMATTER is an opinionated setup of Ghostty and zsh, providing sensible defaults and maximum compatability for what developers need day to day. It also features some of my favorite terminal tools that help make your experience that much sweeter. I hope you can take this kit as a starting place and continue to modify and tweak it to your liking!
 
-At the moment this setup and installation flow is designed for MacOS and [Homebrew](https://brew.sh), but by all means feel free to help support the project by creating scripts for Linux or Windows!
+This setup supports both macOS and Linux with dedicated installation scripts for each platform.
 
 ## Installation
 
+Choose your platform below for the easiest installation method:
+
+### macOS Installation
+
 > [!NOTE]
-> [Homebrew](https://brew.sh) is required to use the script and instructions, feel free to use your own package manager in the manual steps!
-
-There are two ways you can get DARKMATTER running on your computer
-
-### Install Script
-
-This will by far be the easiest method and the one I recommend; just copy and paste.
+> [Homebrew](https://brew.sh) is required for the macOS installation
 
 ```bash
 curl -sSL https://darkmatter.build/install.sh | bash
 ```
 
 [Install script source code](/install.sh)
+
+### Linux Installation
+
+Supports Ubuntu/Debian (apt), Arch (pacman), Fedora (dnf), openSUSE (zypper), and CentOS/RHEL (yum):
+
+> **Heads-up:** The Linux script focuses on shell tooling (zsh, starship, etc.) and **does NOT install Ghostty automatically.** If you'd like to use Ghostty, install it separately via your package manager or from source.
+
+```bash
+curl -sSL https://raw.githubusercontent.com/stevedylandev/darkmatter/main/install-linux.sh | bash
+```
+
+[Linux install script source code](/install-linux.sh)
 
 ### Manual Setup
 
@@ -41,8 +51,11 @@ You can also create the DARKMATTER setup manually by following these steps.
 Run the following commands to install packages for DARKMATTER
 
 ```bash
+# Core shell tooling (works on macOS or Linuxbrew)
 brew install zsh zsh-autosuggestions zsh-syntax-highlighting starship eza zoxide aichat btop fzf
 
+# (Optional) Install Ghostty – macOS only via Homebrew cask
+# For Linux you will need to install Ghostty manually or build from source
 brew install --cask ghostty
 ```
 
@@ -51,6 +64,16 @@ brew install --cask ghostty
 Create a file in your home directory called `.zshrc` with the following contents
 
 ```bash
+# Load Homebrew environment (macOS or Linuxbrew)
+# Adjust the path below if your brew prefix is different
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # history setup
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000

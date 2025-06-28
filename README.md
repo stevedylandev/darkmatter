@@ -29,22 +29,32 @@ curl -sSL https://darkmatter.build/install.sh | bash
 
 [Install script source code](/install.sh)
 
-### Manual Setup
+### Manual / Linux Setup
 
-<details>
-  <summary>Instructions</summary>
-
-You can also create the DARKMATTER setup manually by following these steps.
+While the install script does help give Mac users a quickstart, you can still setup DARKMATTER manually or for Linux with a few tweaks. Just follow the instructions below!
 
 **1. Install Packages**
 
-Run the following commands to install packages for DARKMATTER
+If using MacOS you can run the following command to install the necessary dependencies
 
 ```bash
-brew install zsh zsh-autosuggestions zsh-syntax-highlighting starship eza zoxide aichat btop fzf
+brew install zsh zsh-autosuggestions zsh-syntax-highlighting starship eza zoxide aichat btop fzf bat
 
 brew install --cask ghostty
 ```
+
+If you are using Linux then you can use the links below to decide how you would like to install them. Almost all of them are available on popular package managers!
+
+- [Ghostty](https://ghostty.org/download)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+- [starship](https://starship.rs/#quick-install)
+- [eza](https://github.com/eza-community/eza/blob/main/INSTALL.md)
+- [zoxide](https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation)
+- [aichat](https://github.com/sigoden/aichat?tab=readme-ov-file#install)
+- [btop](https://github.com/aristocratos/btop?tab=readme-ov-file#installation)
+- [fzf](https://github.com/junegunn/fzf?tab=readme-ov-file#installation)
+- [bat](https://github.com/sharkdp/bat)
 
 **2. Setup zsh**
 
@@ -69,6 +79,7 @@ bindkey '^k' history-search-backward
 bindkey '^j' history-search-forward
 
 # Source zsh plugins
+# If you are not using MacOS / Homebrew make sure to adjust per the instructions for each tool
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -133,7 +144,6 @@ auto-update-channel = stable
 click-repeat-interval = 500
 ```
 
-
 **4. Install CommitMono**
 
 DARKMATTER uses a open sourced font called [CommitMono](https://commitmono.com) and in this repo you can download special Nerd Font patched versions of it, which include nice icons used by several of the programs already installed. Check them out in the [`assets`](/assets) folder in this repo.
@@ -141,8 +151,6 @@ DARKMATTER uses a open sourced font called [CommitMono](https://commitmono.com) 
 **5. Open Ghostty!**
 
 After following these steps you should be able to open Ghostty and you will have the DARKMATTER setup
-
-</details>
 
 ## Features
 

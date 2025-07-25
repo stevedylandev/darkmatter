@@ -12,6 +12,70 @@ DARKMATTER is an opinionated setup of Ghostty and zsh, providing sensible defaul
 
 At the moment this setup and installation flow is designed for MacOS and [Homebrew](https://brew.sh), but by all means feel free to help support the project by creating scripts for Linux or Windows!
 
+## Features
+
+Thanks to the programs installed you will have several nice quality of life features available in your terminal!
+
+### AI Shell
+
+Through [AIChat](https://github.com/sigoden/aichat) you can have a great AI experience in your terminal. Start by running the command `ai` which will create a config and ask for your preferred provider and API key if applicable. If you want to use a local model with a tool like `ollama` use the `openai-compatible` option and use `http://localhost:11434/v1` as the base URL with no API key.
+
+![aichat video](https://files.stevedylan.dev/ai-chat.gif)
+
+Once installed you can use AI in multiple ways in your terminal.
+
+Start an AI chat session, or do a single prompt
+
+```bash
+ai
+
+ai why is the sky blue?
+```
+
+Have AI generate a shell command
+
+```bash
+ai -e find my current IP address
+```
+
+Generate just code
+
+```bash
+ai -c React useEffect hook usage
+```
+
+Feed it a file as context
+
+```bash
+ai -f src/index.ts explain this code
+```
+
+AIChat has a lot more capabilities we can't cover here, so by all means [check out the docs](https://github.com/sigoden/aichat/wiki/Chat-REPL-Guide) for more info!
+
+### Better `zsh`
+
+By installing `zsh-autosuggestions` and `zsh-syntax-highlighting` we're able to get a much better auto complete setup with zero zsh frameworks or package managers!
+
+![zsh gif](https://files.stevedylan.dev/zsh-completions.gif)
+
+### Better `cd` with `zoxide`
+
+As you use `cd` to move into different directories, zoxide will gain memory of where you've been and make it easier to navigate to it later. For example, if you used `cd ~/Desktop`, anytime after that you can just use `cd Desktop` to navigate directly to that folder, without needing the full path. You can also use partial words like `cd Desk`.
+
+![zoxide gif](https://files.stevedylan.dev/zoxide.gif)
+
+### Better `ls` with `eza`
+
+`eza` provides a more visually appealing `ls` command that uses NerdFont icons from the patched [CommitMono](https://commitmono.com) font installed with your setup.
+
+![eza gif](https://files.stevedylan.dev/eza.gif)
+
+### Better `htop` with `btop`
+
+Nothing is more satisfying than viewing your system processes, and there's not a better way to do that than with [`btop`](https://github.com/aristocratos/btop). For best color results, update the theme to `TTY` by hitting `ESC` then going to `Settings`.
+
+![btop](https://files.stevedylan.dev/btop.png)
+
 ## Installation
 
 > [!NOTE]
@@ -152,70 +216,6 @@ DARKMATTER uses a open sourced font called [CommitMono](https://commitmono.com) 
 
 After following these steps you should be able to open Ghostty and you will have the DARKMATTER setup
 
-## Features
-
-Thanks to the programs installed you will have several nice quality of life features available in your terminal!
-
-### AI Shell
-
-Through [AIChat](https://github.com/sigoden/aichat) you can have a great AI experience in your terminal. Start by running the command `ai` which will create a config and ask for your preferred provider and API key if applicable. If you want to use a local model with a tool like `ollama` use the `openai-compatible` option and use `http://localhost:11434/v1` as the base URL with no API key.
-
-![aichat video](https://files.stevedylan.dev/ai-chat.gif)
-
-Once installed you can use AI in multiple ways in your terminal.
-
-Start an AI chat session, or do a single prompt
-
-```bash
-ai
-
-ai why is the sky blue?
-```
-
-Have AI generate a shell command
-
-```bash
-ai -e find my current IP address
-```
-
-Generate just code
-
-```bash
-ai -c React useEffect hook usage
-```
-
-Feed it a file as context
-
-```bash
-ai -f src/index.ts explain this code
-```
-
-AIChat has a lot more capabilities we can't cover here, so by all means [check out the docs](https://github.com/sigoden/aichat/wiki/Chat-REPL-Guide) for more info!
-
-### Better `zsh`
-
-By installing `zsh-autosuggestions` and `zsh-syntax-highlighting` we're able to get a much better auto complete setup with zero zsh frameworks or package managers!
-
-![zsh gif](https://files.stevedylan.dev/zsh-completions.gif)
-
-### Better `cd` with `zoxide`
-
-As you use `cd` to move into different directories, zoxide will gain memory of where you've been and make it easier to navigate to it later. For example, if you used `cd ~/Desktop`, anytime after that you can just use `cd Desktop` to navigate directly to that folder, without needing the full path. You can also use partial words like `cd Desk`.
-
-![zoxide gif](https://files.stevedylan.dev/zoxide.gif)
-
-### Better `ls` with `eza`
-
-`eza` provides a more visually appealing `ls` command that uses NerdFont icons from the patched [CommitMono](https://commitmono.com) font installed with your setup.
-
-![eza gif](https://files.stevedylan.dev/eza.gif)
-
-### Better `htop` with `btop`
-
-Nothing is more satisfying than viewing your system processes, and there's not a better way to do that than with [`btop`](https://github.com/aristocratos/btop). For best color results, update the theme to `TTY` by hitting `ESC` then going to `Settings`.
-
-![btop](https://files.stevedylan.dev/btop.png)
-
 ## Themes
 
 DARKMATTER comes with it's own custom theme that I modeled after my favorite theme of all time, Black Metal Bathory. Thankfully Ghostty comes with hundreds of themes you can choose from; just run the following command to see them all!
@@ -243,6 +243,13 @@ For those who may not know, the prompt is what the terminal greets you with. DAR
 
 > [!NOTE]
 > For more info on customizing your prompt [check out the docs](https://starship.rs)
+
+## Ports
+
+Darkmatter is a theme I'm slowly building out into other ports, check them out here!
+
+- [Zed](https://github.com/stevedylandev/darkmatter-zed)
+- [Neovim](https://github.com/stevedylandev/darkmatter-nvim)
 
 ## Questions
 

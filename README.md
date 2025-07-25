@@ -10,7 +10,7 @@ To me, the terminal has always been a sacred place. Any developer who has accomp
 
 DARKMATTER is an opinionated setup of Ghostty and zsh, providing sensible defaults and maximum compatability for what developers need day to day. It also features some of my favorite terminal tools that help make your experience that much sweeter. I hope you can take this kit as a starting place and continue to modify and tweak it to your liking!
 
-At the moment this setup and installation flow is designed for MacOS and [Homebrew](https://brew.sh), but by all means feel free to help support the project by creating scripts for Linux or Windows!
+At the moment this setup and installation flow is designed for MacOS and [Homebrew](https://brew.sh) for simplicity, but there is a [manual installation](#manual--linux-setup) flow you can follow for Linux and Windows!
 
 ## Features
 

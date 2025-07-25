@@ -14,7 +14,7 @@ At the moment this setup and installation flow is designed for MacOS and [Homebr
 
 ## Features
 
-Thanks to the programs installed you will have several nice quality of life features available in your terminal!
+Below are some of the features you can get with DARKMATTER right out of the box if you install the designated packages and use the config files!
 
 ### AI Shell
 
